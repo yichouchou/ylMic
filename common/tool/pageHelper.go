@@ -51,13 +51,12 @@ func GetPageResult(pageUtil *PageUtils) *pojo.PageInfo {
 		fmt.Println(err)
 	}
 
-	//p.Result = adviertisements
-	var total int
-	err2 := engine.SqlMapClient("getTotal").Find(total)
+	var total uint32
+	_, err2 := engine.SqlMapClient("getTotal").Get(&total)
 	if err2 != nil {
 		fmt.Println(err2)
 	}
-	p.PageTotal = uint32(total)
+	p.PageTotal = total
 	p.PageNum = uint32(pageUtil.PageNum + 1)
 	p.PageSize = uint32(pageUtil.PageSize)
 	p.Result = pageUtil.BeanList
