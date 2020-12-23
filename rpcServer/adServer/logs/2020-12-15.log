@@ -1,0 +1,4 @@
+time="2020-12-15 19:34:53" level=error msg="redis加载完成"
+time="2020-12-15 19:34:53" level=error msg="数据库连接池配置完成"
+time="2020-12-15 19:58:39" level=error msg="redis加载完成"
+time="2020-12-15 19:58:39" level=error msg="数据库连接池配置完成"

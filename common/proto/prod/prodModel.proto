@@ -1,0 +1,12 @@
+syntax = "proto3";
+package prod;
+option go_package = "proto/prod;prod";
+
+message ProdModel {
+  uint32 ProdID= 1;
+  string ProdName = 2;
+}
+
+message ProdListResponse {
+  repeated ProdModel Data = 1;
+}

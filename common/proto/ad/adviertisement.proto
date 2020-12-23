@@ -1,0 +1,32 @@
+syntax = "proto3";
+package ad;
+option go_package = "ad;ad";
+
+service AdviertisementService {
+  rpc QueryAdviertisement(QueryByExampleRequest) returns (QueryByExampleResponse) {}
+}
+
+
+message Adviertisement{
+	uint32 id = 1;
+	string name = 2;
+	string title = 3;
+	string tel = 4;
+	uint32 type = 5;
+}
+
+message PageInfo{
+    uint32 pageSize=1;
+    uint32 pageNum=2;
+    uint32 total=3;
+}
+
+message QueryByExampleRequest {
+    Adviertisement adviertisement = 1;
+    PageInfo pageInfo=2;
+}
+
+message QueryByExampleResponse {
+    PageInfo pageInfo = 1;
+    repeated Adviertisement adviertisement = 2;
+}
