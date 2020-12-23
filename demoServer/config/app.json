@@ -23,7 +23,7 @@
     "show_sql": true
   },
   "redis_config": {
-    "addr": "111.231.255.29",
+    "addr": "",
     "port": "6379",
     "password": "",
     "MaxIdle": 256,
