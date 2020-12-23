@@ -47,7 +47,6 @@ func main() {
 	}
 
 	// 打印响应请求
-	fmt.Println("走到这里")
 	fmt.Println(rsp.Adviertisement)
 	fmt.Println(rsp.PageInfo)
 }
