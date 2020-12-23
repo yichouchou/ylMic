@@ -60,8 +60,8 @@ func main() {
 	////下面两局代码是注册rpcserver调用客户端
 	//myService := micro.NewService(
 	//	micro.Name("prodservice.client"),
-	//	micro.WrapClient(Wrappers.NewLogWrapper),            //在注册时只需要传入方法名即可，底层会自动给这个方法传入client
-	//	micro.WrapClient(Wrappers.NewProdsWrapper), //在注册时只需要传入方法名即可，底层会自动给这个方法传入client
+	//	micro.WrapClient(wrappers.NewLogWrapper),            //在注册时只需要传入方法名即可，底层会自动给这个方法传入client
+	//	micro.WrapClient(wrappers.NewProdsWrapper), //在注册时只需要传入方法名即可，底层会自动给这个方法传入client
 	//)
 	//
 	//prodService := Services.NewProdService("prodservice", myService.Client()) //生成的这个客户端绑定consul中存储的prodservice服务，只要调用了prodservice接口就会调用我们上面注册的中间件
