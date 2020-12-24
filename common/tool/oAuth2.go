@@ -214,6 +214,7 @@ func GetDataByTime(c *gin.Context) {
 	}
 }
 
+//登录判断逻辑方法-- 传入登录结构体 返回结果和用户和err
 func LoginCheck(req pojo.LoginReq) (isPass bool, user *pojo.User, err error) {
 	name := req.UserName
 	passWord := req.PassWord
