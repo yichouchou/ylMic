@@ -6,18 +6,22 @@ import (
 	"time"
 )
 
-type Redis struct {
-	pool *red.Pool
-}
+//type Redis struct {
+//	pool *red.Pool
+//}
 
-var redisPool *Redis
+var redisPool *red.Pool
+
+func getRedisPool() *red.Pool {
+	return redisPool
+}
 
 var one sync.Once
 
 func InitRedisPool() {
 	one.Do(func() {
 		config := GetConfig().RedisConfig
-		redisPool.pool = &red.Pool{
+		redisPool = &red.Pool{
 			MaxIdle:     256,
 			MaxActive:   0,
 			IdleTimeout: time.Duration(120),
@@ -37,7 +41,7 @@ func InitRedisPool() {
 }
 
 func Exec(cmd string, key interface{}, args ...interface{}) (interface{}, error) {
-	con := redisPool.pool.Get()
+	con := redisPool.Get()
 	if err := con.Err(); err != nil {
 		return nil, err
 	}

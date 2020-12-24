@@ -48,6 +48,7 @@ func Logger() *logrus.Logger {
 	return logger
 }
 
+//自定义gin日志中间件
 func LoggerToFile() gin.HandlerFunc {
 	logger := Logger()
 	return func(c *gin.Context) {

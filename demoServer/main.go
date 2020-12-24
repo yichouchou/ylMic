@@ -18,7 +18,7 @@ func main() {
 	//tool.Main()
 
 	//加載json配置文件_无须返回值_
-	cfg, err := tool.ParseConfig("./config/app.json")
+	_, err := tool.ParseConfig("./config/app.json")
 	if err != nil {
 		panic(err.Error())
 		tool.Logger().Error("配置文件加载异常")
@@ -60,23 +60,38 @@ func main() {
 	str, _ := red.String(result, err)
 	fmt.Println(str)
 
-	//使用默认gin配置
-	app := gin.Default()
+	////使用默认gin配置
+	//app := gin.Default()
+	//
+	////开启日志
+	//app.Use(tool.LoggerToFile())
+	//
+	////设置全局跨域访问
+	//app.Use(tool.Cors())
+	//
+	////集成session
+	//tool.InitSession(app)
+	//
+	////注册路由
+	//registerRouter(app)
+	//
+	//app.Run(cfg.AppHost + ":" + cfg.AppPort)
 
-	//开启日志
-	app.Use(tool.LoggerToFile())
+	// 在主函数中定义路由规则
+	router := gin.Default()
+	v1 := router.Group("/apis/v1/")
+	{
+		v1.GET("/login", tool.Login)
+	}
 
-	//设置全局跨域访问
-	app.Use(tool.Cors())
-
-	//集成session
-	tool.InitSession(app)
-
-	//注册路由
-	registerRouter(app)
-
-	app.Run(cfg.AppHost + ":" + cfg.AppPort)
-
+	// secure v1
+	sv1 := router.Group("/apis/v1/auth/")
+	// 加载自定义的JWTAuth()中间件,在整个sv1的路由组中都生效
+	sv1.Use(tool.JWTAuth())
+	{
+		sv1.GET("/time", tool.GetDataByTime)
+	}
+	router.Run(":8081")
 }
 
 //路由设置

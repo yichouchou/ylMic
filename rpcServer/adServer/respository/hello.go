@@ -46,14 +46,12 @@ func (a *Adviertisement) QueryAdviertisementList(req *proto.QueryByExampleReques
 	fmt.Println(ad)
 	adviertisements := make([]*(proto.Adviertisement), 0)
 	client := tool.GetDbClient()
-	err := client.RegisterSqlMap(xorm.Xml("./sqlMapper", ".xml"))
+	err := client.RegisterSqlMap(xorm.Xml("./sqlMapper", "adSqlMapper.xml"))
 	if err != nil {
 		fmt.Println(err)
 	}
 
 	selectADByPages := "selectADByPages2"
-	//paramMap_4_3 := map[string]interface{}{"pageNum": 0, "pageSize": 10}
-
 	paramMap_4_3 := map[string]interface{}{"title1": "测试标题", "title2": "测试标题2"}
 	t := new(tool.PageUtils)
 	t.PageSize = int(req.PageInfo.PageSize)

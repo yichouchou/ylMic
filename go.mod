@@ -11,6 +11,7 @@ require (
 	github.com/agrison/mxj v0.0.0-20160310142625-1269f8afb3b4 // indirect
 	github.com/bndr/gotabulate v1.1.2 // indirect
 	github.com/clbanning/mxj v1.8.4 // indirect
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-contrib/sessions v0.0.3
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-sql-driver/mysql v1.4.1
@@ -20,6 +21,7 @@ require (
 	github.com/micro/go-micro/v2 v2.8.0
 	github.com/micro/go-plugins/registry/etcdv3/v2 v2.8.0
 	github.com/micro/go-plugins/wrapper/ratelimiter/uber/v2 v2.8.0
+	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.7.0
 	github.com/streadway/amqp v1.0.0
 	github.com/stretchr/testify v1.5.1 // indirect
