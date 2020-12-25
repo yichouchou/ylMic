@@ -12,7 +12,7 @@ import (
 
 var redisPool *red.Pool
 
-func getRedisPool() *red.Pool {
+func GetRedisPool() *red.Pool {
 	return redisPool
 }
 
