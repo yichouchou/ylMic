@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	red "github.com/gomodule/redigo/redis"
+	"ylMic/common/tool/wrappers"
 	"ylMic/demoServer/model"
 
 	"ylMic/common/pojo"
@@ -81,15 +82,15 @@ func main() {
 	router := gin.Default()
 	v1 := router.Group("/apis/v1/")
 	{
-		v1.GET("/login", tool.Login)
+		v1.GET("/login", wrappers.Login)
 	}
 
 	// secure v1
 	sv1 := router.Group("/apis/v1/auth/")
 	// 加载自定义的JWTAuth()中间件,在整个sv1的路由组中都生效
-	sv1.Use(tool.JWTAuth())
+	sv1.Use(wrappers.JWTAuth())
 	{
-		sv1.GET("/time", tool.GetDataByTime)
+		sv1.GET("/time", wrappers.GetDataByTime)
 	}
 	router.Run(":8081")
 }

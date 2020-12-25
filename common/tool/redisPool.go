@@ -6,10 +6,6 @@ import (
 	"time"
 )
 
-//type Redis struct {
-//	pool *red.Pool
-//}
-
 var redisPool *red.Pool
 
 func GetRedisPool() *red.Pool {

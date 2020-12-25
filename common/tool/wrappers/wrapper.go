@@ -1,4 +1,4 @@
-package tool
+package wrappers
 
 //protoc --proto_path=. --go_out=. --micro_out=. proto/prod/prodModel.proto  生成proto的命令
 import (

@@ -1,15 +1,16 @@
-package tool
+package wrappers
 
 import (
 	"fmt"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/redis"
 	"github.com/gin-gonic/gin"
+	"ylMic/common/tool"
 )
 
 //初始化session操作
 func InitSession(engine *gin.Engine) {
-	config := GetConfig().RedisConfig
+	config := tool.GetConfig().RedisConfig
 	store, err := redis.NewStore(10, "tcp", config.Addr+":"+config.Port, "", []byte("secret"))
 	if err != nil {
 		fmt.Println(err.Error())

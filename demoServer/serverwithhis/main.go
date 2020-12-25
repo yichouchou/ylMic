@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/micro/go-micro/v2"
-	"ylMic/common/tool"
+	"ylMic/common/tool/wrappers"
 
 	//"github.com/micro/go-micro/v2/client"
 	"github.com/micro/go-micro/v2/client/selector"
@@ -26,8 +26,8 @@ func main() {
 		micro.Name("greeterer"),
 		micro.Registry(newRegistry),
 		micro.Selector(selector.DefaultSelector),          //负载均衡使用默认的
-		micro.WrapClient(tool.NewProdsWrapper),            //使用采用熔断器的warpper，
-		micro.WrapClient(tool.NewProdsWrapper),            //可以再添加一个来做日志搜集，比如这一行的NewProdsWrapper改成newlogwarpper
+		micro.WrapClient(wrappers.NewProdsWrapper),        //使用采用熔断器的warpper，
+		micro.WrapClient(wrappers.NewProdsWrapper),        //可以再添加一个来做日志搜集，比如这一行的NewProdsWrapper改成newlogwarpper
 		micro.WrapHandler(limiter.NewHandlerWrapper(QPS)), //限流器
 	)
 	fmt.Println("走到这里1")
