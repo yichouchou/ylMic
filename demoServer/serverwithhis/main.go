@@ -6,9 +6,11 @@ import (
 	"github.com/micro/go-micro/v2"
 	"ylMic/common/tool/wrappers"
 
+	"github.com/gin-gonic/gin"
 	//"github.com/micro/go-micro/v2/client"
 	"github.com/micro/go-micro/v2/client/selector"
 	"github.com/micro/go-micro/v2/registry"
+	"github.com/micro/go-micro/v2/web"
 	"github.com/micro/go-plugins/registry/etcdv3/v2"
 	limiter "github.com/micro/go-plugins/wrapper/ratelimiter/uber/v2"
 	proto "ylMic/common/proto/greeter"
@@ -30,11 +32,29 @@ func main() {
 		micro.WrapClient(wrappers.NewProdsWrapper),        //可以再添加一个来做日志搜集，比如这一行的NewProdsWrapper改成newlogwarpper
 		micro.WrapHandler(limiter.NewHandlerWrapper(QPS)), //限流器
 	)
+	//注册服务
+
+	engine := gin.Default()
+	engine.POST("/user/", func(context *gin.Context) {
+		context.String(200, "get userinfos")
+	})
+
+	microService := web.NewService(
+		web.Name("userserver"),
+		//web.RegisterTTL(time.Second*30),//设置注册服务的过期时间
+		//web.RegisterInterval(time.Second*20),//设置间隔多久再次注册服务
+		web.Address(":9999"),
+		web.Handler(engine),
+		web.Registry(newRegistry),
+	)
+	microService.Init()
+	microService.Run()
+
 	fmt.Println("走到这里1")
 
 	service.Init()
 	fmt.Println("走到这里2")
-
+	service.Run()
 	//set MICRO_REGISTRY=eureka
 	//set MICRO_API_NAMESPACE=api.tutor.com
 	// 创建新的客户端

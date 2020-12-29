@@ -35,6 +35,8 @@ func InitDbPool() {
 		dbClient.SetDisableGlobalCache(true)
 		dbClient.Cascade(false)
 		dbClient.ShowSQL(true)
+		//将xml里面的sql注册进 sqlmap
+		dbClient.RegisterSqlMap(xorm.Xml("./sqlMapper", ".xml"))
 		//dbClient.NewSession 创建一个事务
 	})
 }

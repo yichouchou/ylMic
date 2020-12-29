@@ -56,7 +56,6 @@ func (a *Adviertisement) QueryAdviertisementList(req *proto.QueryByExampleReques
 	t := new(tool.PageUtils)
 	t.PageSize = int(req.PageInfo.PageSize)
 	t.PageNum = 0
-	t.Client = client
 	t.SqlName = selectADByPages
 	t.SqlExample = paramMap_4_3
 	t.BeanList = &adviertisements

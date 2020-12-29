@@ -80,6 +80,7 @@ func main() {
 
 	// 在主函数中定义路由规则
 	router := gin.Default()
+	router.Use(wrappers.Cors())
 	v1 := router.Group("/apis/v1/")
 	{
 		v1.GET("/login", wrappers.Login)
