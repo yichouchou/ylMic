@@ -43,6 +43,7 @@ func sub() {
 
 }
 
+//测试mq main方法
 func main() {
 	cmd.Init()
 

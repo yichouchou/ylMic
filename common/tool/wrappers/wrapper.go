@@ -7,12 +7,9 @@ import (
 	"github.com/afex/hystrix-go/hystrix"
 	"github.com/micro/go-micro/v2/client"
 	"strconv"
-	"sync"
 	"ylMic/common/proto/greeter"
 	"ylMic/common/proto/prod"
 )
-
-var on sync.Once
 
 //提供熔断器与降级函数的工具
 type ProdsWrapper struct { //官方提供的例子，创建自己的struct，嵌套go-micro的client

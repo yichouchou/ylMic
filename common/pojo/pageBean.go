@@ -22,8 +22,3 @@ func SetPageSize(ps uint32) {
 	}
 	PageSize = int(ps)
 }
-
-//创建分页器
-//func CreatePaginator(page, pageSize, total uint32) PageInfo {
-//	return nil
-//}
