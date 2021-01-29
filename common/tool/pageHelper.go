@@ -22,7 +22,7 @@ func GetPageResult(pageUtil *PageUtils) *pojo.PageInfo {
 	client := GetDbClient()
 	//从sqlmap获取初始sql语句
 	sql := client.GetSql(pageUtil.SqlName)
-
+	sqlCacheMap := pojo.GetSqlCacheMap()
 	//拼接 limit
 	s2 := "limit " + strconv.Itoa(pageUtil.PageNum) + "," + strconv.Itoa(pageUtil.PageSize)
 	var bt bytes.Buffer
@@ -43,5 +43,6 @@ func GetPageResult(pageUtil *PageUtils) *pojo.PageInfo {
 	p.PageNum = uint32(pageUtil.PageNum + 1)
 	p.PageSize = uint32(pageUtil.PageSize)
 	p.Result = pageUtil.BeanList
+	sqlCacheMap[pageUtil.SqlName] = pageUtil
 	return p
 }
