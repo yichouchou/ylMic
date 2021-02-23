@@ -50,10 +50,7 @@ func main() {
 	microService.Init()
 	microService.Run()
 
-	fmt.Println("走到这里1")
-
 	service.Init()
-	fmt.Println("走到这里2")
 	service.Run()
 	//set MICRO_REGISTRY=eureka
 	//set MICRO_API_NAMESPACE=api.tutor.com
@@ -61,18 +58,15 @@ func main() {
 	fmt.Println(service.Client().Options().Registry.Options().Addrs)
 	fmt.Println(service.Client().Options().CallOptions.Address)
 	greeter := proto.NewGreeterService("greeter", service.Client())
-	fmt.Println("走到这里3")
 
 	// 调用greeter
 	rsp, err := greeter.Hello(context.TODO(), &proto.HelloRequest{Name: "John"})
-	fmt.Println("走到这里4")
 
 	if err != nil {
 		fmt.Println(err)
 	}
 
 	// 打印响应请求
-	fmt.Println("走到这里5")
 	fmt.Println(rsp.Greeting)
 	//consulReg := etcdv3.NewRegistry( //新建一个consul注册的地址，也就是我们consul服务启动的机器ip+端口
 	//	registry.Addrs("localhost:8500"),

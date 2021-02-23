@@ -12,7 +12,7 @@ import (
 	"ylMic/common/proto/prod"
 )
 
-type ProdsWrapper struct { //官方提供的例子，创建自己的struct，嵌套go-micro的client
+type ProdsWrapper struct { //创建自己的struct，嵌套go-micro的client
 	client.Client
 }
 

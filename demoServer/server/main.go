@@ -29,21 +29,14 @@ func main() {
 		micro.Name("greeter"),
 		micro.Registry(eurekaRegistry),
 	)
-	fmt.Println("运行到这里没有报错1")
 	// 初始化方法会解析命令行标识
 	service.Init()
-	fmt.Println("运行到这里没有报错2")
 
 	// 注册处理器
 	proto.RegisterGreeterHandler(service.Server(), new(Greeter))
-	fmt.Println("运行到这里没有报错3")
 
 	// 运行服务
 	if err := service.Run(); err != nil {
-		fmt.Println("运行到这里没有报错6")
-
 		fmt.Println(err)
-		fmt.Println("运行到这里没有报错7")
-
 	}
 }
