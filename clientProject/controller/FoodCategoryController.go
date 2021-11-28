@@ -2,6 +2,7 @@ package controller
 
 import (
 	"github.com/gin-gonic/gin"
+	"ylMic/common/pojo"
 	"ylMic/common/tool"
 )
 
@@ -17,7 +18,7 @@ func (fcc *FoodCategoryController) foodCategory(ctx *gin.Context) {
 	foodCategoryService := &service.FoodCategoryService{}
 	categories, err := foodCategoryService.Categories()
 	if err != nil {
-		tool.Failed(ctx, "食品种类数据获取失败")
+		pojo.Failed(ctx, "食品种类数据获取失败")
 		return
 	}
 
@@ -28,5 +29,5 @@ func (fcc *FoodCategoryController) foodCategory(ctx *gin.Context) {
 			category.ImageUrl = tool.FileServerAddr() + "/" + category.ImageUrl
 		}
 	}
-	tool.Success(ctx, categories)
+	pojo.Success(ctx, categories)
 }
